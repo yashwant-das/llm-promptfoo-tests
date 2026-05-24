@@ -6,7 +6,7 @@ This project evaluates translation quality across multiple language models using
 
 - [Node.js](https://nodejs.org) >= 18
 - [Promptfoo](https://www.promptfoo.dev) (`npm install -g promptfoo`)
-- [Ollama](https://ollama.ai) or [LM Studio](https://lmstudio.ai) running locally (for cloud providers, see [full config](#full-configuration))
+- [Ollama](https://ollama.ai) running locally with the tested model `gpt-oss:20b` pulled (for cloud providers, see [full config](#full-configuration))
 
 ## Quick Start
 
@@ -17,7 +17,7 @@ npm i -g promptfoo
 # 2. Install project dependencies
 npm install
 
-# 3. Make sure Ollama or LM Studio is running locally
+# 3. Make sure Ollama is running with the tested model: ollama run gpt-oss:20b
 
 # 4. Run the evaluation with local models
 npm run eval
@@ -42,7 +42,7 @@ Results are saved to `outputs/results.json` and `outputs/results-latest.csv`.
 
 | File | Description |
 |---|---|
-| `promptfooconfig.yaml` | Default config — local models only (Ollama + LM Studio) |
+| `promptfooconfig.yaml` | Default config — local model via Ollama |
 | `promptfooconfig.full.yaml` | Full config — adds OpenAI, Anthropic, Google |
 | `prompts/direct.txt` | Direct translation prompt |
 | `prompts/detailed.txt` | Translation prompt with tone and register instructions |
@@ -56,7 +56,7 @@ Results are saved to `outputs/results.json` and `outputs/results-latest.csv`.
 
 | Command | Description |
 |---|---|
-| `npm run eval` | Run with local models (Ollama + LM Studio) |
+| `npm run eval` | Run with local model (Ollama — `gpt-oss:20b`) |
 | `npm run eval:full` | Run with all providers (needs API keys) |
 | `npm run eval:watch` | Re-run on file changes |
 | `npm run publish` | Publish results to web dashboard |
@@ -69,9 +69,7 @@ Results are saved to `outputs/results.json` and `outputs/results-latest.csv`.
 
 | Provider | Model | Service Required |
 |---|---|---|
-| Ollama | `llama3` | [Ollama](https://ollama.ai) running locally |
-| Ollama | `mistral` | [Ollama](https://ollama.ai) running locally |
-| LM Studio | `Meta-Llama-3-8B-Instruct-GGUF` | [LM Studio](https://lmstudio.ai) server on `localhost:1234` |
+| Ollama | `gpt-oss:20b` | [Ollama](https://ollama.ai) running locally |
 
 ### Full configuration
 

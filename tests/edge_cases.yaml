@@ -91,38 +91,38 @@
 
 - vars:
     language: French
-    input: Error: file not found at /usr/local/bin
+    input: "Error: file not found at /usr/local/bin"
   assert:
     - type: regex
       value: "/usr/local/bin"
 
 - vars:
     language: Spanish
-    input: Error: file not found at /usr/local/bin
+    input: "Error: file not found at /usr/local/bin"
   assert:
     - type: regex
       value: "/usr/local/bin"
 
 - vars:
     language: French
-    input: Price: $1,234.56 USD — tax included
+    input: "Price: $1,234.56 USD — tax included"
   assert:
     - type: regex
-      value: "\$1,234.56|1\\.234,56|1234,56"
+      value: '\$1,234.56|1\.234,56|1234,56'
 
 - vars:
     language: French
     input: Please contact support@example.com or call +1-800-555-0199
   assert:
     - type: regex
-      value: "support@example.com|\+1-800-555-0199"
+      value: 'support@example.com|\+1-800-555-0199'
 
 - vars:
     language: Spanish
     input: Please contact support@example.com or call +1-800-555-0199
   assert:
     - type: regex
-      value: "support@example.com|\+1-800-555-0199"
+      value: 'support@example.com|\+1-800-555-0199'
 
 - vars:
     language: French
@@ -143,4 +143,4 @@
     input: 1+1 = 2
   assert:
     - type: regex
-      value: "1\\+1.*2|1\\s*\\+\\s*1.*2"
+      value: '1\+1.*2|1\s*\+\s*1.*2'

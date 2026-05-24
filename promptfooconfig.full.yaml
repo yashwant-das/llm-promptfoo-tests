@@ -27,26 +27,18 @@ providers:
     label: Gemini 2.5 Flash
     config:
       temperature: 0.3
-  - id: ollama:llama3
-    label: Llama 3 (Ollama)
-    config:
-      temperature: 0.3
-  - id: ollama:mistral
-    label: Mistral (Ollama)
-    config:
-      temperature: 0.3
-  - id: lmstudio:lm-studio-community/Meta-Llama-3-8B-Instruct-GGUF
-    label: Llama 3 (LM Studio)
+  - id: ollama:gpt-oss:20b
+    label: GPT-OSS 20B
     config:
       temperature: 0.3
 
 # ── Prompts ────────────────────────────────────────────────────────
 prompts:
-  - file://prompts/direct.txt
+  - id: file://prompts/direct.txt
     label: Direct (default)
-  - file://prompts/detailed.txt
+  - id: file://prompts/detailed.txt
     label: Detailed
-  - file://prompts/code_mixing.txt
+  - id: file://prompts/code_mixing.txt
     label: Code-Aware
 
 # ── Tests ──────────────────────────────────────────────────────────
