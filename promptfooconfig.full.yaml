@@ -55,5 +55,6 @@ defaultTest:
       threshold: 1
 
 # ── Output ─────────────────────────────────────────────────────────
-output: outputs/results.json
-results: outputs/results-latest.csv
+outputPath:
+  - outputs/results.json
+  - outputs/results-latest.csv
