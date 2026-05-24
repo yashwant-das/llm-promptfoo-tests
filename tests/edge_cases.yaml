@@ -1,0 +1,146 @@
+- vars:
+    language: French
+    input: What's up?
+  assert:
+    - type: contains
+      value: Quoi
+
+- vars:
+    language: Spanish
+    input: What's up?
+  assert:
+    - type: contains
+      value: Qué
+
+- vars:
+    language: French
+    input: It's raining cats and dogs
+  assert:
+    - type: contains
+      value: il pleut|battre
+
+- vars:
+    language: Spanish
+    input: It's raining cats and dogs
+  assert:
+    - type: contains
+      value: llover|gato|perro
+
+- vars:
+    language: German
+    input: Don't cross the bridge until you come to it
+  assert:
+    - type: contains
+      value: Brücke
+
+- vars:
+    language: French
+    input: I am hungry
+  assert:
+    - type: contains
+      value: faim
+
+- vars:
+    language: Spanish
+    input: I am hungry
+  assert:
+    - type: contains
+      value: hambre
+
+- vars:
+    language: German
+    input: I am hungry
+  assert:
+    - type: contains
+      value: hungrig|Hunger
+
+- vars:
+    language: French
+    input: "Hello! How are you today? :-)"
+  assert:
+    - type: contains
+      value: Bonjour|Salut
+
+- vars:
+    language: Spanish
+    input: "Hello! How are you today? :-)"
+  assert:
+    - type: contains
+      value: Hola|¿Cómo estás
+
+- vars:
+    language: German
+    input: "Hello! How are you today? :-)"
+  assert:
+    - type: contains
+      value: Hallo|Wie geht
+
+- vars:
+    language: French
+    input: The quick brown fox jumps over the lazy dog
+  assert:
+    - type: regex
+      value: ".*renard.*"
+
+- vars:
+    language: Spanish
+    input: The quick brown fox jumps over the lazy dog
+  assert:
+    - type: regex
+      value: ".*zorro.*"
+
+- vars:
+    language: French
+    input: Error: file not found at /usr/local/bin
+  assert:
+    - type: regex
+      value: "/usr/local/bin"
+
+- vars:
+    language: Spanish
+    input: Error: file not found at /usr/local/bin
+  assert:
+    - type: regex
+      value: "/usr/local/bin"
+
+- vars:
+    language: French
+    input: Price: $1,234.56 USD — tax included
+  assert:
+    - type: regex
+      value: "\$1,234.56|1\\.234,56|1234,56"
+
+- vars:
+    language: French
+    input: Please contact support@example.com or call +1-800-555-0199
+  assert:
+    - type: regex
+      value: "support@example.com|\+1-800-555-0199"
+
+- vars:
+    language: Spanish
+    input: Please contact support@example.com or call +1-800-555-0199
+  assert:
+    - type: regex
+      value: "support@example.com|\+1-800-555-0199"
+
+- vars:
+    language: French
+    input: Can you help me?
+  assert:
+    - type: not-contains
+      value: "Error|erreur|erreur"
+
+- vars:
+    language: Spanish
+    input: Can you help me?
+  assert:
+    - type: not-contains
+      value: "Error|error"
+
+- vars:
+    language: French
+    input: 1+1 = 2
+  assert:
+    - type: regex
+      value: "1\\+1.*2|1\\s*\\+\\s*1.*2"

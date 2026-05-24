@@ -1,0 +1,5 @@
+Translate the following text into {{language}}. If the text contains technical terms, code snippets, or proper nouns that are typically kept in English, preserve them as-is. Otherwise, translate everything else naturally.
+
+{{input}}
+
+Return only the translated text.

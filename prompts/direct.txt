@@ -1,0 +1,5 @@
+Translate the following English text into {{language}}.
+
+{{input}}
+
+Return only the translated text, with no additional explanation or formatting.

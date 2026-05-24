@@ -1,0 +1,28 @@
+{
+  "name": "promptfoo-eval",
+  "version": "1.0.0",
+  "description": "Professional LLM evaluation suite with multi-model comparison",
+  "private": true,
+  "scripts": {
+    "eval": "promptfoo eval",
+    "eval:watch": "promptfoo eval -w",
+    "publish": "promptfoo publish",
+    "report": "promptfoo view",
+    "compare": "promptfoo eval --diff"
+  },
+  "keywords": [
+    "promptfoo",
+    "llm",
+    "evaluation",
+    "testing",
+    "translation",
+    "ai"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "homepage": "https://github.com/your-org/promptfoo-eval",
+  "bugs": {
+    "url": "https://github.com/your-org/promptfoo-eval/issues"
+  }
+}

@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+
+description: 'Professional Translation Evaluation — Multi-Model, Multi-Lang'
+
+# ── Providers ──────────────────────────────────────────────────────
+providers:
+  - id: openai:gpt-4.1-mini
+    label: GPT-4.1 Mini
+    config:
+      temperature: 0.3
+      top_p: 0.9
+  - id: openai:gpt-4o
+    label: GPT-4o
+    config:
+      temperature: 0.3
+      top_p: 0.9
+  - id: anthropic:claude-sonnet-4-20250514
+    label: Claude Sonnet
+    config:
+      temperature: 0.3
+  - id: google:gemini-2.5-flash
+    label: Gemini 2.5 Flash
+    config:
+      temperature: 0.3
+
+# ── Prompts ────────────────────────────────────────────────────────
+prompts:
+  - file://prompts/direct.txt
+    label: Direct (default)
+  - file://prompts/detailed.txt
+    label: Detailed
+  - file://prompts/code_mixing.txt
+    label: Code-Aware
+
+# ── Tests ──────────────────────────────────────────────────────────
+tests:
+  - file://tests/translations.yaml
+  - file://tests/edge_cases.yaml
+
+# ── Scoring ────────────────────────────────────────────────────────
+defaultTest:
+  assert:
+    - type: javascript
+      value: "return output.length > 0 && output.trim() !== ''"
+      weight: 0
+      threshold: 1
+
+# ── Output ─────────────────────────────────────────────────────────
+output: outputs/results.json
+results: outputs/results-latest.csv

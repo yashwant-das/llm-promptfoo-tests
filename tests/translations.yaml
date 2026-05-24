@@ -1,0 +1,167 @@
+- vars:
+    language: French
+    input: Hello world
+  assert:
+    - type: contains
+      value: Bonjour
+
+- vars:
+    language: Spanish
+    input: Hello world
+  assert:
+    - type: contains
+      value: Hola
+
+- vars:
+    language: German
+    input: Hello world
+  assert:
+    - type: contains
+      value: Hallo
+
+- vars:
+    language: Japanese
+    input: Hello world
+  assert:
+    - type: icontains
+      value: こんにちは
+
+- vars:
+    language: Arabic
+    input: Hello world
+  assert:
+    - type: icontains
+      value: مرحبا
+
+- vars:
+    language: Hindi
+    input: Hello world
+  assert:
+    - type: icontains
+      value: ह
+
+- vars:
+    language: French
+    input: Where is the library?
+  assert:
+    - type: contains
+      value: bibliothèque
+
+- vars:
+    language: Spanish
+    input: Where is the library?
+  assert:
+    - type: contains
+      value: biblioteca
+
+- vars:
+    language: German
+    input: Where is the library?
+  assert:
+    - type: contains
+      value: Bibliothek
+
+- vars:
+    language: French
+    input: Good morning
+  assert:
+    - type: contains
+      value: bonjour
+
+- vars:
+    language: Spanish
+    input: Good morning
+  assert:
+    - type: contains
+      value: Buenos
+
+- vars:
+    language: German
+    input: Good morning
+  assert:
+    - type: contains
+      value: Guten
+
+- vars:
+    language: French
+    input: Thank you very much for your help
+  assert:
+    - type: contains
+      value: merci
+
+- vars:
+    language: Spanish
+    input: Thank you very much for your help
+  assert:
+    - type: contains
+      value: gracias
+
+- vars:
+    language: German
+    input: Thank you very much for your help
+  assert:
+    - type: contains
+      value: Danke
+
+- vars:
+    language: French
+    input: The meeting is scheduled for tomorrow at 3 PM
+  assert:
+    - type: contains
+      value: réunion
+
+- vars:
+    language: Spanish
+    input: The meeting is scheduled for tomorrow at 3 PM
+  assert:
+    - type: contains
+      value: reunión
+
+- vars:
+    language: German
+    input: The meeting is scheduled for tomorrow at 3 PM
+  assert:
+    - type: contains
+      value: meeting|Besprechung
+
+- vars:
+    language: Japanese
+    input: The meeting is scheduled for tomorrow at 3 PM
+  assert:
+    - type: icontains
+      value: 会議
+
+- vars:
+    language: Japanese
+    input: Nice to meet you
+  assert:
+    - type: icontains
+      value: 会
+
+- vars:
+    language: French
+    input: I would like to order a coffee, please
+  assert:
+    - type: contains
+      value: café|commander|voudrais
+
+- vars:
+    language: Spanish
+    input: I would like to order a coffee, please
+  assert:
+    - type: contains
+      value: café|quiero|deseo
+
+- vars:
+    language: German
+    input: I would like to order a coffee, please
+  assert:
+    - type: contains
+      value: Kaffee|bestellen
+
+- vars:
+    language: Arabic
+    input: I would like to order a coffee, please
+  assert:
+    - type: icontains
+      value: قهوه|قهوة|اريد
