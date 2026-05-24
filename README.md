@@ -88,6 +88,26 @@ Add to `providers` in `promptfooconfig.yaml`:
 
 Export the corresponding API key, then run `npm run eval`.
 
+### Local Providers
+
+**Ollama** — requires [Ollama](https://ollama.ai) running locally:
+
+```yaml
+- id: ollama:llama3
+  label: Llama 3 (local)
+  config:
+    temperature: 0.3
+```
+
+**LM Studio** — requires [LM Studio](https://lmstudio.ai) with local server running (default `http://localhost:1234`):
+
+```yaml
+- id: lmstudio:lm-studio-community/Meta-Llama-3-8B-Instruct-GGUF
+  label: Llama 3 (LM Studio)
+  config:
+    temperature: 0.3
+```
+
 ## Adding a Prompt
 
 1. Create `prompts/new_strategy.txt`
