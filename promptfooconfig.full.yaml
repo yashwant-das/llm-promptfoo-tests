@@ -1,9 +1,32 @@
 # yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
 
-description: 'Translation Evaluation — Local Models'
+description: 'Professional Translation Evaluation — All Providers'
 
-# ── Providers (local) ───────────────────────────────────────────────
+# ── Providers (cloud + local) ───────────────────────────────────────
 providers:
+  - id: openai:gpt-4.1-mini
+    label: GPT-4.1 Mini
+    config:
+      temperature: 0.3
+      top_p: 0.9
+  - id: openai:gpt-4o
+    label: GPT-4o
+    config:
+      temperature: 0.3
+      top_p: 0.9
+  - id: openai:o4-mini
+    label: o4-mini
+    config:
+      temperature: 0.3
+      top_p: 0.9
+  - id: anthropic:claude-sonnet-4-20250514
+    label: Claude Sonnet
+    config:
+      temperature: 0.3
+  - id: google:gemini-2.5-flash
+    label: Gemini 2.5 Flash
+    config:
+      temperature: 0.3
   - id: ollama:llama3
     label: Llama 3 (Ollama)
     config:

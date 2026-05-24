@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "eval": "promptfoo eval",
+    "eval:full": "promptfoo eval -c promptfooconfig.full.yaml",
     "eval:watch": "promptfoo eval -w",
     "publish": "promptfoo publish",
     "report": "promptfoo view",

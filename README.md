@@ -1,59 +1,119 @@
 # Promptfoo Evaluation Suite
 
-This project evaluates translation quality across multiple language models using [Promptfoo](https://www.promptfoo.dev).
+This project evaluates translation quality across multiple language models using [Promptfoo](https://www.promptfoo.dev). It runs out of the box with local models via **Ollama** or **LM Studio** — no API keys required.
 
-## Setup
+## Prerequisites
+
+- [Node.js](https://nodejs.org) >= 18
+- [Promptfoo](https://www.promptfoo.dev) (`npm install -g promptfoo`)
+- [Ollama](https://ollama.ai) or [LM Studio](https://lmstudio.ai) running locally (for cloud providers, see [full config](#full-configuration))
+
+## Quick Start
 
 ```bash
+# 1. Install promptfoo globally
 npm i -g promptfoo
-cp .env.example .env
-# Edit .env with your API keys
+
+# 2. Install project dependencies
+npm install
+
+# 3. Make sure Ollama or LM Studio is running locally
+
+# 4. Run the evaluation with local models
 npm run eval
+
+# 5. View results
+npm run report
 ```
 
-## Structure
+> **No API keys needed.** The default config uses local models only.
+
+## Viewing Results
+
+| Command | Description |
+|---|---|
+| `npm run report` | Open results table in your browser |
+| `npm run publish` | Upload results to promptfoo web dashboard |
+| `npm run compare` | Compare two evaluation runs side-by-side |
+
+Results are saved to `outputs/results.json` and `outputs/results-latest.csv`.
+
+## Project Structure
 
 | File | Description |
 |---|---|
-| `promptfooconfig.yaml` | Providers, prompts, tests, output paths |
+| `promptfooconfig.yaml` | Default config — local models only (Ollama + LM Studio) |
+| `promptfooconfig.full.yaml` | Full config — adds OpenAI, Anthropic, Google |
 | `prompts/direct.txt` | Direct translation prompt |
 | `prompts/detailed.txt` | Translation prompt with tone and register instructions |
 | `prompts/code_mixing.txt` | Translation prompt that preserves code, URLs, emails |
 | `tests/translations.yaml` | 32 standard translation tests |
 | `tests/edge_cases.yaml` | 14 edge-case tests |
 | `outputs/` | Evaluation results (gitignored) |
-| `.env.example` | Required API keys |
+| `.env.example` | API keys template (for cloud providers) |
+
+## Commands
+
+| Command | Description |
+|---|---|
+| `npm run eval` | Run with local models (Ollama + LM Studio) |
+| `npm run eval:full` | Run with all providers (needs API keys) |
+| `npm run eval:watch` | Re-run on file changes |
+| `npm run publish` | Publish results to web dashboard |
+| `npm run report` | View results locally |
+| `npm run compare` | Compare two evaluation runs |
 
 ## Configuration
 
-### Providers
+### Default (local models)
 
-| Provider | Model ID | Temp |
+| Provider | Model | Service Required |
 |---|---|---|
-| OpenAI | `openai:gpt-4.1-mini` | 0.3 |
-| OpenAI | `openai:gpt-4o` | 0.3 |
-| OpenAI | `openai:o4-mini` | 0.3 |
-| Anthropic | `anthropic:claude-sonnet-4-20250514` | 0.3 |
-| Google | `google:gemini-2.5-flash` | 0.3 |
+| Ollama | `llama3` | [Ollama](https://ollama.ai) running locally |
+| Ollama | `mistral` | [Ollama](https://ollama.ai) running locally |
+| LM Studio | `Meta-Llama-3-8B-Instruct-GGUF` | [LM Studio](https://lmstudio.ai) server on `localhost:1234` |
+
+### Full configuration
+
+To compare against cloud providers, copy the env template and add your API keys:
+
+```bash
+cp .env.example .env
+# Edit .env with your keys
+npm run eval:full
+```
+
+| Provider | Model ID | Temp | API Key |
+|---|---|---|---|
+| OpenAI | `gpt-4.1-mini` | 0.3 | `OPENAI_API_KEY` |
+| OpenAI | `gpt-4o` | 0.3 | `OPENAI_API_KEY` |
+| OpenAI | `o4-mini` | 0.3 | `OPENAI_API_KEY` |
+| Anthropic | `claude-sonnet-4-20250514` | 0.3 | `ANTHROPIC_API_KEY` |
+| Google | `gemini-2.5-flash` | 0.3 | `GOOGLE_API_KEY` |
 
 ### Tests
 
 - `tests/translations.yaml` — Standard translations: greetings, questions, requests, formal language, idioms
 - `tests/edge_cases.yaml` — Edge cases: idioms, special characters, code snippets, numbers/currency, script preservation, negative assertions
 
-## Commands
+## Customizing
 
-| Command | Description |
-|---|---|
-| `npm run eval` | Run full evaluation (all providers × all prompts) |
-| `npm run eval:watch` | Re-run on file changes |
-| `npm run publish` | Publish results to web dashboard |
-| `npm run report` | View results locally |
-| `npm run compare` | Compare two evaluation runs |
+### Adding a Provider
 
-## Adding Tests
+Add to `providers` in `promptfooconfig.yaml` (or `promptfooconfig.full.yaml`):
 
-### Translation test (append to `tests/translations.yaml`)
+```yaml
+- id: openai:gpt-3.5-turbo
+  label: GPT-3.5 Turbo
+  config:
+    temperature: 0.3
+```
+
+For cloud providers, add the corresponding API key to `.env`.
+
+### Adding a Test
+
+#### Translation test (append to `tests/translations.yaml`)
 
 ```yaml
 - vars:
@@ -64,7 +124,7 @@ npm run eval
       value: boa noite
 ```
 
-### Edge-case test (append to `tests/edge_cases.yaml`)
+#### Edge-case test (append to `tests/edge_cases.yaml`)
 
 ```yaml
 - vars:
@@ -75,43 +135,10 @@ npm run eval
       value: "C:\\\\Users\\\\foo\\\\bar\\.txt"
 ```
 
-## Adding a Provider
-
-Add to `providers` in `promptfooconfig.yaml`:
-
-```yaml
-- id: openai:gpt-3.5-turbo
-  label: GPT-3.5 Turbo
-  config:
-    temperature: 0.3
-```
-
-Export the corresponding API key, then run `npm run eval`.
-
-### Local Providers
-
-**Ollama** — requires [Ollama](https://ollama.ai) running locally:
-
-```yaml
-- id: ollama:llama3
-  label: Llama 3 (local)
-  config:
-    temperature: 0.3
-```
-
-**LM Studio** — requires [LM Studio](https://lmstudio.ai) with local server running (default `http://localhost:1234`):
-
-```yaml
-- id: lmstudio:lm-studio-community/Meta-Llama-3-8B-Instruct-GGUF
-  label: Llama 3 (LM Studio)
-  config:
-    temperature: 0.3
-```
-
-## Adding a Prompt
+### Adding a Prompt
 
 1. Create `prompts/new_strategy.txt`
-2. Add to `prompts` in `promptfooconfig.yaml`:
+2. Add to `prompts` in your config file:
 
 ```yaml
 prompts:
@@ -125,7 +152,7 @@ prompts:
 - Use `temperature` of 0.1–0.3 for evaluation consistency
 - Use full model IDs (e.g., `claude-sonnet-4-20250514`) rather than aliases
 - Commit test files, not results in `outputs/`
-- Check evaluation results before merging provider or prompt changes
+- Review results before merging provider or prompt changes
 
 ## License
 
