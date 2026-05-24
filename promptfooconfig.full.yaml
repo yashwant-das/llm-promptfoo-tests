@@ -14,8 +14,8 @@ providers:
     config:
       temperature: 0.3
       top_p: 0.9
-  - id: openai:o4-mini
-    label: o4-mini
+  - id: openai:o3-mini
+    label: o3-mini
     config:
       temperature: 0.3
       top_p: 0.9

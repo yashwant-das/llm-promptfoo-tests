@@ -1,6 +1,6 @@
 # Promptfoo Evaluation Suite
 
-This project evaluates translation quality across multiple language models using [Promptfoo](https://www.promptfoo.dev). It runs out of the box with local models via **Ollama** or **LM Studio** — no API keys required.
+This project evaluates translation quality across multiple language models using [Promptfoo](https://www.promptfoo.dev). It runs out of the box with a local model via **Ollama** — no API keys required.
 
 ## Prerequisites
 
@@ -47,8 +47,8 @@ Results are saved to `outputs/results.json` and `outputs/results-latest.csv`.
 | `prompts/direct.txt` | Direct translation prompt |
 | `prompts/detailed.txt` | Translation prompt with tone and register instructions |
 | `prompts/code_mixing.txt` | Translation prompt that preserves code, URLs, emails |
-| `tests/translations.yaml` | 32 standard translation tests |
-| `tests/edge_cases.yaml` | 14 edge-case tests |
+| `tests/translations.yaml` | 24 standard translation tests |
+| `tests/edge_cases.yaml` | 21 edge-case tests |
 | `outputs/` | Evaluation results (gitignored) |
 | `.env.example` | API keys template (for cloud providers) |
 
@@ -85,7 +85,7 @@ npm run eval:full
 |---|---|---|---|
 | OpenAI | `gpt-4.1-mini` | 0.3 | `OPENAI_API_KEY` |
 | OpenAI | `gpt-4o` | 0.3 | `OPENAI_API_KEY` |
-| OpenAI | `o4-mini` | 0.3 | `OPENAI_API_KEY` |
+| OpenAI | `o3-mini` | 0.3 | `OPENAI_API_KEY` |
 | Anthropic | `claude-sonnet-4-20250514` | 0.3 | `ANTHROPIC_API_KEY` |
 | Google | `gemini-2.5-flash` | 0.3 | `GOOGLE_API_KEY` |
 
@@ -140,7 +140,7 @@ For cloud providers, add the corresponding API key to `.env`.
 
 ```yaml
 prompts:
-  - file://prompts/new_strategy.txt
+  - id: file://prompts/new_strategy.txt
     label: New Strategy
 ```
 
